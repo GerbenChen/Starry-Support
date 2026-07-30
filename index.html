@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>繁星學院 — 會員組織管理平台</title>
+  <style>
+    :root {
+      --green-deep: #1E4D38;
+      --green-mid: #2E7D32;
+      --green-light: #4CAF50;
+      --gold: #FFD54F;
+      --bg: #fafaf8;
+      --text: #1B2A1B;
+      --text-secondary: #5a6b5a;
+      --text-tertiary: #8a9a8a;
+      --card-bg: #ffffff;
+      --border: #e8f0e8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,248,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--green-deep);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    nav .brand span {
+      font-size: 24px;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 24px;
+    }
+
+    nav .links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav .links a:hover { color: var(--green-mid); }
+
+    /* ── Sections ── */
+    section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 64px;
+    }
+
+    .hero-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 40px;
+      box-shadow: 0 8px 32px rgba(30,77,56,0.15);
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--green-deep);
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+
+    .hero .tagline {
+      font-size: 18px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .hero .desc {
+      font-size: 15px;
+      color: var(--text-tertiary);
+      max-width: 460px;
+      margin: 20px auto 0;
+      line-height: 1.8;
+    }
+
+    /* ── Features ── */
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      margin-bottom: 32px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(30,77,56,0.06);
+    }
+
+    .feature-card .icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      line-height: 1.5;
+    }
+
+    /* ── Support ── */
+    .support-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .support-box .icon { font-size: 32px; margin-bottom: 12px; }
+
+    .support-box p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .support-box a.email {
+      display: inline-block;
+      color: var(--green-mid);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 10px 28px;
+      border: 2px solid var(--green-mid);
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .support-box a.email:hover {
+      background: var(--green-mid);
+      color: #fff;
+    }
+
+    .support-box .note {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-top: 14px;
+    }
+
+    /* ── FAQ ── */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-item dt {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .faq-item dd {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    footer .links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--green-mid); }
+
+    footer .copy {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="inner">
+      <a class="brand" href="#">
+        <img src="app_icon.png" alt="繁星學院" style="width:28px;height:28px;border-radius:6px;"> 繁星學院
+      </a>
+      <div class="links">
+        <a href="#features">功能</a>
+        <a href="#support">支援</a>
+        <a href="#faq">FAQ</a>
+        <a href="privacy-policy.html">隱私權政策</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-icon">
+      <img src="app_icon.png" alt="繁星學院" style="width:64px;height:64px;border-radius:12px;">
+    </div>
+    <h1>繁星學院</h1>
+    <p class="tagline">會員組織管理平台</p>
+    <p class="desc">專為會員組織打造的內部管理工具，涵蓋財務記帳、活動管理、知識庫與行事曆，讓組織營運更高效。</p>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <h2 class="section-title">功能特色</h2>
+    <p class="section-subtitle">一個 App 滿足組織日常營運所需</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>財務記帳</h3>
+        <p>記錄收支明細，自動產生報表，財務狀況一目瞭然。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎯</div>
+        <h3>活動管理</h3>
+        <p>建立活動、追蹤報名、管理預算，一站完成。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📚</div>
+        <h3>知識庫</h3>
+        <p>分類整理組織教材與資源，隨時隨地學習成長。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📅</div>
+        <h3>行事曆</h3>
+        <p>整合 Google Calendar，組織活動與個人行程同步掌握。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📢</div>
+        <h3>公告系統</h3>
+        <p>即時推播通知，重要訊息不遺漏。</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔐</div>
+        <h3>權限管理</h3>
+        <p>五級權限分層，確保資料安全與操作規範。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support -->
+  <section id="support">
+    <h2 class="section-title">支援</h2>
+    <p class="section-subtitle">遇到問題、發現 Bug、或想刪除帳號？我們在這裡。</p>
+    <div class="support-box">
+      <div class="icon">💬</div>
+      <p>來信告訴我們，我們會盡快回覆</p>
+      <a class="email" href="mailto:manystars86@gmail.com">manystars86@gmail.com</a>
+      <p class="note">請附上您的裝置型號、系統版本及問題描述，以便我們更快協助您。</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2 class="section-title">常見問題</h2>
+    <p class="section-subtitle"></p>
+    <dl>
+      <div class="faq-item">
+        <dt>如何取得帳號？</dt>
+        <dd>帳號由組織管理員建立，本 App 不提供公開註冊。如需帳號請聯繫您所屬的管理員。</dd>
+      </div>
+      <div class="faq-item">
+        <dt>如何刪除帳號？</dt>
+        <dd>請在 App 內的「個人資料」頁面點選「申請刪除帳號」，管理員將於 30 日內處理您的請求，届時帳號及相關個人資料將被永久刪除。您也可以來信至 manystars86@gmail.com 申請。</dd>
+      </div>
+      <div class="faq-item">
+        <dt>忘記密碼怎麼辦？</dt>
+        <dd>請聯繫您的管理員為您重設密碼。</dd>
+      </div>
+      <div class="faq-item">
+        <dt>支援哪些平台？</dt>
+        <dd>繁星學院支援 iOS 和 Android 雙平台。</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="links">
+      <a href="privacy-policy.html">隱私權政策</a>
+      <a href="terms.html">服務條款</a>
+      <a href="mailto:manystars86@gmail.com">聯絡我們</a>
+    </div>
+    <p class="copy">© 2026 繁星學院 Starry Academy. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
