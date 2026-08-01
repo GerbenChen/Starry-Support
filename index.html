@@ -129,13 +129,56 @@
       line-height: 1.8;
     }
 
+    .store-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
     .store-badge {
       display: inline-block;
-      margin-top: 24px;
       transition: opacity 0.2s;
     }
 
     .store-badge:hover { opacity: 0.8; }
+
+    .android-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #000;
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      height: 40px;
+      transition: opacity 0.2s;
+      cursor: pointer;
+    }
+
+    .android-badge:hover { opacity: 0.8; }
+
+    .android-badge svg { flex-shrink: 0; }
+
+    .android-badge .badge-text {
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    .android-badge .badge-text small {
+      font-size: 7px;
+      opacity: 0.85;
+      display: block;
+      letter-spacing: 0.3px;
+    }
+
+    .android-badge .badge-text span {
+      font-size: 14px;
+      font-weight: 600;
+      display: block;
+    }
 
     /* ── Features ── */
     .section-title {
@@ -308,17 +351,28 @@
     <h1>繁星學院</h1>
     <p class="tagline">會員組織管理平台</p>
     <p class="desc">專為會員組織打造的內部管理工具，涵蓋財務記帳、活動管理、知識庫與行事曆，讓組織營運更高效。</p>
-    <a href="https://apps.apple.com/app/id6796030797" class="store-badge" target="_blank" rel="noopener">
-      <svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
-        <rect width="120" height="40" rx="6" fill="#000"/>
-        <text x="42" y="13" fill="#fff" font-family="-apple-system,sans-serif" font-size="7" letter-spacing="0.3">Download on the</text>
-        <text x="42" y="27" fill="#fff" font-family="-apple-system,sans-serif" font-size="14" font-weight="600">App Store</text>
-        <g transform="translate(12,7)" fill="#fff">
-          <path d="M18.128 12.7c-.017-1.94 1.582-2.87 1.655-2.916-.9-1.32-2.304-1.5-2.805-1.52-1.192-.122-2.33.703-2.937.703-.607 0-1.544-.686-2.538-.668-1.305.019-2.51.76-3.18 1.931-1.356 2.353-.347 5.84.974 7.751.646.934 1.416 1.983 2.428 1.945.974-.039 1.342-.63 2.52-.63 1.177 0 1.516.63 2.549.61 1.048-.018 1.713-1.001 2.354-1.938.742-1.079 1.048-2.123 1.066-2.178-.023-.01-2.046-.785-2.066-3.113z" transform="scale(0.75)"/>
-          <path d="M15.775 6.725c.536-.65.898-1.553.8-2.454-.773.031-1.71.515-2.264 1.165-.497.576-.932 1.496-.816 2.38.863.067 1.743-.44 2.28-1.091z" transform="scale(0.75)"/>
-        </g>
-      </svg>
-    </a>
+    <div class="store-badges">
+      <a href="https://apps.apple.com/app/id6796030797" class="store-badge" target="_blank" rel="noopener">
+        <svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="40" rx="6" fill="#000"/>
+          <text x="42" y="13" fill="#fff" font-family="-apple-system,sans-serif" font-size="7" letter-spacing="0.3">Download on the</text>
+          <text x="42" y="27" fill="#fff" font-family="-apple-system,sans-serif" font-size="14" font-weight="600">App Store</text>
+          <g transform="translate(12,7)" fill="#fff">
+            <path d="M18.128 12.7c-.017-1.94 1.582-2.87 1.655-2.916-.9-1.32-2.304-1.5-2.805-1.52-1.192-.122-2.33.703-2.937.703-.607 0-1.544-.686-2.538-.668-1.305.019-2.51.76-3.18 1.931-1.356 2.353-.347 5.84.974 7.751.646.934 1.416 1.983 2.428 1.945.974-.039 1.342-.63 2.52-.63 1.177 0 1.516.63 2.549.61 1.048-.018 1.713-1.001 2.354-1.938.742-1.079 1.048-2.123 1.066-2.178-.023-.01-2.046-.785-2.066-3.113z" transform="scale(0.75)"/>
+            <path d="M15.775 6.725c.536-.65.898-1.553.8-2.454-.773.031-1.71.515-2.264 1.165-.497.576-.932 1.496-.816 2.38.863.067 1.743-.44 2.28-1.091z" transform="scale(0.75)"/>
+          </g>
+        </svg>
+      </a>
+      <a id="androidBadge" class="android-badge" onclick="downloadAndroid(event)" href="#">
+        <svg width="20" height="22" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.523 2.376l1.513-2.621a.327.327 0 00-.116-.446.327.327 0 00-.446.116l-1.532 2.654a9.178 9.178 0 00-3.94-.878 9.178 9.178 0 00-3.94.878L7.53.425a.327.327 0 00-.446-.116.327.327 0 00-.116.446l1.513 2.621C5.498 4.836 3.578 7.86 3.578 11.33h16.844c0-3.47-1.92-6.494-4.9-8.954zM8.67 8.083a.744.744 0 110-1.488.744.744 0 010 1.488zm6.66 0a.744.744 0 110-1.488.744.744 0 010 1.488zM3.578 12.33v8.152a1.986 1.986 0 001.984 1.984h.992v2.542a.992.992 0 101.984 0v-2.542h2.976v2.542a.992.992 0 101.984 0v-2.542h.992a1.986 1.986 0 001.984-1.984V12.33H3.578zm-2.976 0a.992.992 0 00-.992.992v5.952a.992.992 0 101.984 0v-5.952a.992.992 0 00-.992-.992zm22.796 0a.992.992 0 00-.992.992v5.952a.992.992 0 101.984 0v-5.952a.992.992 0 00-.992-.992z"/>
+        </svg>
+        <div class="badge-text">
+          <small>Download</small>
+          <span>Android APK</span>
+        </div>
+      </a>
+    </div>
   </section>
 
   <!-- Features -->
@@ -404,6 +458,32 @@
     </div>
     <p class="copy">© 2026 繁星學院 Starry Academy. All rights reserved.</p>
   </footer>
+
+  <script>
+    function downloadAndroid(e) {
+      e.preventDefault();
+      var badge = document.getElementById('androidBadge');
+      badge.style.opacity = '0.5';
+      badge.querySelector('.badge-text span').textContent = '取得連結中...';
+
+      fetch('https://api.github.com/repos/GerbenChen/starry-support/releases/latest')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.assets && data.assets.length > 0) {
+            window.location.href = data.assets[0].browser_download_url;
+          } else {
+            alert('目前沒有可下載的 Android 版本，請聯繫管理員。');
+          }
+        })
+        .catch(function() {
+          alert('下載連結取得失敗，請稍後再試。');
+        })
+        .finally(function() {
+          badge.style.opacity = '1';
+          badge.querySelector('.badge-text span').textContent = 'Android APK';
+        });
+    }
+  </script>
 
 </body>
 </html>
